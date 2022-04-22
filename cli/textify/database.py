@@ -23,11 +23,23 @@ def Get_ID():
         print(data)
 
 def SetID(config):
+    Checkfolder()
     with open(get_User_config_path(), 'w') as json_file:
         json.dump(config, json_file)
 
 def GetDatabase():
+    Checkfolder()
     with open(get_database_path()) as f:
         data = json.load(f)
         print(data)
+
+def SetDatabase(User_data):
+    Checkfolder()
+    with open(get_database_path(), 'w') as json_file:
+        json.dump(User_data, json_file)
+
     
+def Checkfolder():
+    check = os.path.isFile(get_database_location())
+    if check == False:
+        os.mkdir(get_database_location())
